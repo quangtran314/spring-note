@@ -1,0 +1,40 @@
+.main {
+    width : 800px;
+    margin : 50px auto;
+    padding: 20px;
+    border: 1px solid;
+}
+
+.header {
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-group{
+    text-align: right;
+}
+
+.footer{
+    text-align: right;
+}
+
+textarea{
+    width : 100%;
+    height: 100px;
+}
+
+input{
+    width : 50%;
+}
+
+.sort{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sort p {
+    margin: 0;
+}

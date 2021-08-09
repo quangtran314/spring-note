@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete note</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/static/list.css}"/>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+        <h1>
+            Delete Note
+        </h1>
+    </div>
+
+    <div>
+        <p>Are you sure you want to delete <b th:text="${note.title}"></b></p>
+    </div>
+    <form method="post" th:action="@{/delete-note}" th:object="${note}">
+        <input th:type="hidden" name="id" th:field="*{id}">
+
+        <div>
+            <textarea th:text="${note.content}" readonly></textarea>
+        </div>
+
+        <div class="footer">
+            <button type="submit" class="btn btn-warning">Delete</button>
+            <a class="btn btn-info" href="/notes">Exit</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

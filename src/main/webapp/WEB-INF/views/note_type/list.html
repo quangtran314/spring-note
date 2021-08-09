@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Categories</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" th:href="@{/resources/static/list.css}"/>
+</head>
+<body>
+<div class="main">
+
+  <div class="header">
+    <h1>List note types</h1>
+    <div>
+      <a class="btn btn-success" th:href="@{/create-noteType}">Add new note type</a>
+    </div>
+  </div>
+
+  <div align="center">
+    <table class="table table-bordered table-striped">
+      <thead class="grey lighten-2">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Edit</th>
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="noteType : ${noteTypes}">
+        <tr>
+          <td th:text="${noteType.name}"></td>
+          <td th:text="${noteType.description}"></td>
+          <td><a th:href="@{/edit-noteType/__${noteType.id}__ }">Edit</a></td>
+        </tr>
+      </th:block>
+      </tbody>
+    </table>
+
+    <nav aria-label="Navigation for countries">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" th:href="@{'/noteTypes'(page=${noteTypes.number - 1})}" th:if="${noteTypes.hasPrevious()}">Previous</a></li>
+
+        <th:block th:with="start = ${#paging.getStart(noteTypes.totalPages, noteTypes.number)}, end = ${#paging.getEnd(noteTypes.totalPages, noteTypes.number)}">
+          <!--                    <span th:if="${notes.totalPages > 3} and ${notes.number >= 3}" th:with="start = ${notes.number - 2}, end = ${notes.number}"></span>-->
+          <!--                    <span th:if="${notes.totalPages > 3} and ${notes.number < 3}" th:with="end = 2"></span>-->
+          <th:block th:each="i : ${#numbers.sequence(start, end)}">
+            <li class="page-item active" th:if="${i} == ${noteTypes.number}"><a class="page-link" th:text="${i + 1}"></a></li>
+            <li class="page-item" th:if="${i} != ${noteTypes.number}"><a class="page-link" th:href="@{'/noteTypes'(page=${i})}" th:text="${i + 1}"></a></li>
+          </th:block>
+        </th:block>
+
+        <li class="page-item"><a class="page-link" th:href="@{'/noteTypes'(page=${noteTypes.number + 1})}" th:if="${noteTypes.hasNext()}">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

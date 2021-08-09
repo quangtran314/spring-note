@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit note type</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" th:href="@{/resources/static/list.css}"/>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <h1>Edit note type : <span th:text="${noteType.name}"></span></h1>
+  </div>
+
+  <div>
+    <form th:action="@{/edit-noteType}" th:object="${noteType}" method="post">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" th:field="*{name}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+          <textarea placeholder="Write note here" th:field="*{description}"/>
+        </div>
+      </div>
+
+      <div class="form-group text-right">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn btn-warning" href="/noteTypes">Exit</a>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
