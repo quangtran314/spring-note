@@ -21,6 +21,8 @@
 
     <div>
         <form th:action="@{/edit-note}" th:object="${note}" method="post">
+            <input th:type="hidden" th:field="*{id}">
+            <input th:type="hidden" th:field="*{user}">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
