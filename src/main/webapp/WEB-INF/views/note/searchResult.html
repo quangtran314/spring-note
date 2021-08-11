@@ -49,7 +49,7 @@
             </tbody>
         </table>
 
-        <nav aria-label="Navigation for countries" th:if="${notes.totalElement > 0}">
+        <nav aria-label="Navigation for countries" th:if="${notes.totalPages > 1}">
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" th:href="@{'/search-result'(page=${notes.number - 1}, title=${title})}" th:if="${notes.hasPrevious()}">Previous</a></li>
 
